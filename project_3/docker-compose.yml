@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: ORS_Project3-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: project-03
+    ports:
+      - "3308:3306"  # Host port 3308 maps to container port 3306
+    networks:
+      - mynetwork
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+  webapp:
+    build:
+      context: .
+    container_name: ORS_Project3-webapp
+    ports:
+      - "8080:8080"  # Host port 8080 maps to container port 8080
+    networks:
+      - mynetwork
+    depends_on:
+      - mysql
+    environment:
+      - DATABASE_URL=jdbc:mysql://mysql:3306/project-03
+
+networks:
+  mynetwork:
+    driver: bridge
