@@ -1,6 +1,6 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
-<%@page import="in.co.rays.project_3.controller.StaffCtl"%>
+<%@page import="in.co.rays.project_3.controller.ItemCtl"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="in.co.rays.project_3.util.HTMLUtility"%>
 <%@page import="in.co.rays.project_3.util.DataUtility"%>
@@ -18,7 +18,6 @@
 <script src="<%=ORSView.APP_CONTEXT%>/js/Validate.js"></script>
 
 <style type="text/css">
-
 i.css {
 	border: 2px solid #8080803b;
 	padding-left: 10px;
@@ -50,8 +49,8 @@ i.css {
 	<div>
 
 		<main>
-		<form action="<%=ORSView.STAFF_CTL%>" method="post">
-			<jsp:useBean id="dto" class="in.co.rays.project_3.dto.StaffDTO"
+		<form action="<%=ORSView.ITEM_CTL%>" method="post">
+			<jsp:useBean id="dto" class="in.co.rays.project_3.dto.ItemDTO"
 				scope="request"></jsp:useBean>
 			<div class="row pt-3">
 				<!-- Grid column -->
@@ -68,18 +67,18 @@ i.css {
 								if (dto.getId() != null && id > 0) {
 							%>
 							<h3 class="text-center default-text text-primary">Update
-								Staff</h3>
+								Item</h3>
 							<%
 								} else {
 							%>
-							<h3 class="text-center default-text text-primary">Add Staff</h3>
+							<h3 class="text-center default-text text-primary">Add Item</h3>
 							<%
 								}
 							%>
 							<!--Body-->
 							<div>
 								<%
-									Map map = (Map) request.getAttribute("staff");
+									Map map = (Map) request.getAttribute("item");
 								%>
 
 								<H4 align="center">
@@ -121,7 +120,7 @@ i.css {
 
 							<div class="md-form">
 
-								<span class="pl-sm-5"><b>Full Name</b> <span
+								<span class="pl-sm-5"><b>Title</b> <span
 									style="color: red;">*</span></span> </br>
 								<div class="col-sm-12">
 									<div class="input-group">
@@ -130,18 +129,18 @@ i.css {
 												<i class="fa fa-user-alt grey-text" style="font-size: 1rem;"></i>
 											</div>
 										</div>
-										<input type="text" class="form-control" name="fullName"
-											placeholder="fullName"
-											oninput=" handleLetterInput(this, 'fullNameError', 15)"
-							                onblur=" validateLetterInput(this, 'fullNameError', 15)"
-											value="<%=DataUtility.getStringData(dto.getFullName())%>">
+										<input type="text" class="form-control" name="title"
+											placeholder="title"
+											oninput=" handleLetterInput(this, 'titleError', 15)"
+											onblur=" validateLetterInput(this, 'titleError', 15)"
+											value="<%=DataUtility.getStringData(dto.getTitle())%>">
 									</div>
 								</div>
-								<font color="red" class="pl-sm-5" id="fullNameError"> <%=ServletUtility.getErrorMessage("fullName", request)%></font></br>
+								<font color="red" class="pl-sm-5" id="titleError"> <%=ServletUtility.getErrorMessage("title", request)%></font></br>
 
 
 
-								<span class="pl-sm-5"><b>Division</b> <span
+								<span class="pl-sm-5"><b>Category</b> <span
 									style="color: red;">*</span></span></br>
 								<div class="col-sm-12">
 									<div class="input-group">
@@ -153,15 +152,15 @@ i.css {
 										</div>
 
 
-										<%=HTMLUtility.getList1("division", DataUtility.getStringData(dto.getDivision()), map)%>
+										<%=HTMLUtility.getList1("category", DataUtility.getStringData(dto.getCategory()), map)%>
 
 									</div>
 								</div>
-								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("division", request)%></font></br>
+								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("category", request)%></font></br>
 
 
 
-								<span class="pl-sm-5"><b>Previous Employer</b> <span
+								<%-- 	<span class="pl-sm-5"><b>Overview</b> <span
 									style="color: red;">*</span></span></br>
 								<div class="col-sm-12">
 									<div class="input-group">
@@ -172,21 +171,59 @@ i.css {
 											</div>
 										</div>
 										<input type="text" class="form-control"
-											name="previousEmployer" placeholder="previousEmployer"
-												oninput=" handleLetterInput(this, 'previousEmployerError', 15)"
-							                onblur=" validateLetterInput(this, 'previousEmployerError', 15)"
-											value="<%=DataUtility.getStringData(dto.getPreviousEmployer())%>">
+											name="overView" placeholder="overView"
+												oninput=" handleLetterInput(this, 'overViewError', 15)"
+							                onblur=" validateLetterInput(this, 'overViewError', 15)"
+											value="<%=DataUtility.getStringData(dto.getOverView())%>">
 									</div>
 								</div>
-								<font color="red" class="pl-sm-5" id="previousEmployerError"> <%=ServletUtility.getErrorMessage("previousEmployer", request)%></font></br>
+								<font color="red" class="pl-sm-5" id=""overView"Error"> <%=ServletUtility.getErrorMessage("overView", request)%></font></br>
+
+ --%>
+
+								<span class="pl-sm-5"><b>Overview</b> <span
+									style="color: red;">*</span></span></br>
+								<div class="col-sm-12">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-user-circle grey-text"
+													style="font-size: 1rem;"></i>
+											</div>
+										</div>
+										<textarea class="form-control" name="overView"
+											placeholder="Enter overview"
+											oninput="handleLetterInput(this, 'overViewError', 25)"
+											onblur="validateLetterInput(this, 'overViewError', 25)"><%=DataUtility.getStringData(dto.getOverView())%></textarea>
+									</div>
+								</div>
+								<font color="red" class="pl-sm-5" id="overViewError"> <%=ServletUtility.getErrorMessage("overView", request)%>
+								
+								
+								
+								</font></br> <span class="pl-sm-5"><b>Cost</b> <span
+									style="color: red;">*</span></span> </br>
+								<div class="col-sm-12">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-user-alt grey-text" style="font-size: 1rem;"></i>
+											</div>
+										</div>
+										<input type="text" class="form-control" name="cost"
+											placeholder="cost"
+											oninput="handleIntegerInput(this, 'costError', 15)"
+											onblur=" validateIntegerInput(this, 'costError', 15)"
+											value="<%=DataUtility.getStringData(dto.getCost()==0?"":dto.getCost())%>">
+									</div>
+								</div>
+								<font color="red" class="pl-sm-5" id="costError"> <%=ServletUtility.getErrorMessage("cost", request)%></font></br>
 
 
 
 
 
-
-
-								<span class="pl-sm-5"><b>JoiningDate</b> <span
+								<span class="pl-sm-5"><b>PurchaseDate</b> <span
 									style="color: red;">*</span></span></br>
 								<div class="col-sm-12">
 									<div class="input-group">
@@ -196,9 +233,9 @@ i.css {
 											</div>
 										</div>
 										<input type="text" id="datepicker" name="date"
-											class="form-control" placeholder="joining date"
+											class="form-control" placeholder="Purchase date"
 											readonly="readonly"
-											value="<%=DataUtility.getDateString(dto.getJoiningDate())%>">
+											value="<%=DataUtility.getDateString(dto.getPurchaseDate())%>">
 									</div>
 								</div>
 								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("date", request)%></font></br>
@@ -213,9 +250,9 @@ i.css {
 
 									<input type="submit" name="operation"
 										class="btn btn-success btn-md" style="font-size: 17px"
-										value="<%=StaffCtl.OP_UPDATE%>"> <input type="submit"
+										value="<%=ItemCtl.OP_UPDATE%>"> <input type="submit"
 										name="operation" class="btn btn-warning btn-md"
-										style="font-size: 17px" value="<%=StaffCtl.OP_CANCEL%>">
+										style="font-size: 17px" value="<%=ItemCtl.OP_CANCEL%>">
 
 								</div>
 								<%
@@ -225,9 +262,9 @@ i.css {
 
 									<input type="submit" name="operation"
 										class="btn btn-success btn-md" style="font-size: 17px"
-										value="<%=StaffCtl.OP_SAVE%>"> <input type="submit"
+										value="<%=ItemCtl.OP_SAVE%>"> <input type="submit"
 										name="operation" class="btn btn-warning btn-md"
-										style="font-size: 17px" value="<%=StaffCtl.OP_RESET%>">
+										style="font-size: 17px" value="<%=ItemCtl.OP_RESET%>">
 								</div>
 
 							</div>

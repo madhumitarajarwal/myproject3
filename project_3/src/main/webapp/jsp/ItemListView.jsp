@@ -1,12 +1,12 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="in.co.rays.project_3.dto.StaffDTO"%>
+<%@page import="in.co.rays.project_3.dto.ItemDTO"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="in.co.rays.project_3.model.ModelFactory"%>
 <%@page import="in.co.rays.project_3.model.RoleModelInt"%>
 <%@page import="in.co.rays.project_3.util.DataUtility"%>
-<%@page import="in.co.rays.project_3.controller.StaffListCtl"%>
+<%@page import="in.co.rays.project_3.controller.ItemListCtl"%>
 <%@page import="in.co.rays.project_3.util.HTMLUtility"%>
 <%@page import="in.co.rays.project_3.util.ServletUtility"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -48,14 +48,14 @@
 	<%@include file="calendar.jsp"%>
 	<div></div>
 	<div>
-		<form class="pb-5" action="<%=ORSView.STAFF_LIST_CTL%>" method="post">
+		<form class="pb-5" action="<%=ORSView.ITEM_LIST_CTL%>" method="post">
 
-			<jsp:useBean id="dto" class="in.co.rays.project_3.dto.StaffDTO"
+			<jsp:useBean id="dto" class="in.co.rays.project_3.dto.ItemDTO"
 				scope="request"></jsp:useBean>
 
 
 			<%
-				Map map = (Map) request.getAttribute("staff");
+				Map map = (Map) request.getAttribute("item");
 			%>
 			<%
 				int pageNo = ServletUtility.getPageNo(request);
@@ -67,12 +67,12 @@
 
 				List list = ServletUtility.getList(request);
 
-				Iterator<StaffDTO> it = list.iterator();
+				Iterator<ItemDTO> it = list.iterator();
 				if (list.size() != 0) {
 			%>
 			<center>
 				<h1 class="text-primary font-weight-bold pt-3">
-					<u>Staff List</u>
+					<u>Item List</u>
 				</h1>
 			</center>
 			<div class="row">
@@ -116,37 +116,39 @@
 
 				<div class="col-sm-2"></div>
 				<div class="col-sm-2">
-					<input type="text" name="fullName" placeholder="Enter full Name"
+					<input type="text" name="title" placeholder="Enter title"
 						class="form-control"
-						oninput=" handleLetterInput(this, 'fullNameError', 15)"
-						id="fullNameError"
-						value="<%=ServletUtility.getParameter("fullName", request)%>">
+						oninput=" handleLetterInput(this, 'titleError', 15)"
+						id="titleError"
+						value="<%=ServletUtility.getParameter("title", request)%>">
+				</div>
+
+				&emsp;
+				<div class="col-sm-2">
+					<input type="text" name="title" placeholder="Enter title"
+						class="form-control"
+						oninput=" handleLetterInput(this, 'titleError', 15)"
+						id="titleError"
+						value="<%=ServletUtility.getParameter("title", request)%>">
 				</div>
 
 				&emsp;
 				<div class="col-sm-2">
 					<input type="text" name="date" class="form-control"
-						placeholder="Enter joining date" id="datepicker"
+						placeholder="Enter purchase date" id="datepicker"
 						readonly="readonly"
 						value="<%=ServletUtility.getParameter("date", request)%>">
 				</div>
 
-				&emsp;
-				<div class="col-sm-2">
-					<input type="text" name="previousEmployer"
-						placeholder="Enter previousEmployer" class="form-control"
-						oninput=" handleLetterInput(this, 'previousEmployerError', 15)"
-						id="previousEmployerError"
-						value="<%=ServletUtility.getParameter("previousEmployer", request)%>">
-				</div>
+				
 				&emsp; &emsp;
 
 				<div class="col-sm-2">
 					<input type="submit" class="btn btn-primary btn-md"
 						style="font-size: 15px" name="operation"
-						value="<%=StaffListCtl.OP_SEARCH%>"> &emsp; <input
+						value="<%=ItemListCtl.OP_SEARCH%>"> &emsp; <input
 						type="submit" class="btn btn-dark btn-md" style="font-size: 15px"
-						name="operation" value="<%=StaffListCtl.OP_RESET%>">
+						name="operation" value="<%=ItemListCtl.OP_RESET%>">
 				</div>
 
 				<div class="col-sm-2"></div>
@@ -161,10 +163,11 @@
 							<th width="10%"><input type="checkbox" id="select_all"
 								name="Select" class="text"> Select All</th>
 							<th width="5%" class="text">S.NO</th>
-							<th width="15%" class="text">FullName</th>
-							<th width="15%" class="text">PreviousEmployer</th>
-							<th width="20%" class="text">Division</th>
-							<th width="20%" class="text">JoiningDate</th>
+							<th width="15%" class="text">Title</th>
+							<th width="15%" class="text">Overview</th>
+							<th width="20%" class="text">Category</th>
+							<th width="20%" class="text">Cost</th>
+							<th width="20%" class="text">PurchaseDate</th>
 							<th width="5%" class="text">Edit</th>
 						</tr>
 					</thead>
@@ -172,18 +175,19 @@
 						SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 							while (it.hasNext()) {
 								dto = it.next();
-								String formattedDate = (dto.getJoiningDate() != null) ? sdf.format(dto.getJoiningDate()) : "N/A";
+								String formattedDate = (dto.getPurchaseDate() != null) ? sdf.format(dto.getPurchaseDate()) : "N/A";
 					%>
 					<tr>
 						<td align="center"><input type="checkbox" class="checkbox"
 							name="ids" value="<%=dto.getId()%>"></td>
-						<td class="text"><%=index++%></td>.
-						<td class="text"><%=dto.getFullName()%></td>
-						<td class="text"><%=dto.getPreviousEmployer()%></td>
-						<%--   <td class="text"><%= dto.getDivision() %></td> --%>
-						<td><%=map.get(dto.getDivision())%></td>
+						<td class="text"><%=index++%></td>
+						<td class="text"><%=dto.getTitle()%></td>
+						<td class="text"><%=dto.getOverView()%></td>
+						<td><%=map.get(dto.getCategory())%></td>
+						   <td class="text"><%= dto.getCost()%></td> 
+						
 						<td class="text"><%=formattedDate%></td>
-						<td class="text"><a href="StaffCtl?id=<%=dto.getId()%>">Edit</a></td>
+						<td class="text"><a href="ItemCtl?id=<%=dto.getId()%>">Edit</a></td>
 					</tr>
 					<%
 						}
@@ -194,20 +198,20 @@
 				<tr>
 					<td><input type="submit" name="operation"
 						class="btn btn-warning btn-md" style="font-size: 17px"
-						value="<%=StaffListCtl.OP_PREVIOUS%>"
+						value="<%=ItemListCtl.OP_PREVIOUS%>"
 						<%=pageNo > 1 ? "" : "disabled"%>></td>
 
 					<td><input type="submit" name="operation"
 						class="btn btn-primary btn-md" style="font-size: 17px"
-						value="<%=StaffListCtl.OP_NEW%>"></td>
+						value="<%=ItemListCtl.OP_NEW%>"></td>
 
 					<td><input type="submit" name="operation"
 						class="btn btn-danger btn-md" style="font-size: 17px"
-						value="<%=StaffListCtl.OP_DELETE%>"></td>
+						value="<%=ItemListCtl.OP_DELETE%>"></td>
 
 					<td align="right"><input type="submit" name="operation"
 						class="btn btn-warning btn-md" style="font-size: 17px"
-						style="padding: 5px;" value="<%=StaffListCtl.OP_NEXT%>"
+						style="padding: 5px;" value="<%=ItemListCtl.OP_NEXT%>"
 						<%=(nextPageSize != 0) ? "" : "disabled"%>></td>
 				</tr>
 				<tr></tr>
@@ -218,7 +222,7 @@
 				if (list.size() == 0) {
 			%>
 			<center>
-				<h1 style="font-size: 40px; color: #162390;">Staff List</h1>
+				<h1 style="font-size: 40px; color: #162390;">Item List</h1>
 			</center>
 			</br>
 			<div class="row">
@@ -257,7 +261,7 @@
 				<div style="padding-left: 48%;">
 					<input type="submit" name="operation"
 						class="btn btn-primary btn-md" style="font-size: 17px"
-						value="<%=StaffListCtl.OP_BACK%>">
+						value="<%=ItemListCtl.OP_BACK%>">
 				</div>
 
 				<div class="col-md-4"></div>

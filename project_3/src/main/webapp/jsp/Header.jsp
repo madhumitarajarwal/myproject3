@@ -215,7 +215,41 @@
 							href="<%=ORSView.STAFF_LIST_CTL%>"><i
 							class="fas fa-user-friends"></i>Staff List</a>
 					</div></li>
-
+					
+		<li class="nav-item dropdown" style="padding-left: 5px;"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <font style="color: White;">Cart</font></a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="<%=ORSView.CART_CTL%>"><i class="fas fa-user-circle"></i>Add Cart </a> 
+						<a class="dropdown-item" href="<%=ORSView.CART_LIST_CTL%>"><i class="fas fa-user-friends"></i>Cart List</a>
+					</div>
+					</li>
+             
+             
+             <li class="nav-item dropdown" style="padding-left: 5px;"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: White;">Purchase</font>
+				</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="<%=ORSView.PURCHASE_CTL%>"><i
+							class="fas fa-user-circle"></i>Add Purchase </a> <a class="dropdown-item"
+							href="<%=ORSView.PURCHASE_LIST_CTL%>"><i
+							class="fas fa-user-friends"></i>Purchase List</a>
+					</div></li>
+					
+					
+					
+					 <li class="nav-item dropdown" style="padding-left: 5px;"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: White;">Item</font>
+				</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="<%=ORSView.ITEM_CTL%>"><i
+							class="fas fa-user-circle"></i>Add Item </a> <a class="dropdown-item"
+							href="<%=ORSView.ITEM_LIST_CTL%>"><i class="fas fa-user-friends"></i>Item List</a>
+					</div></li>
+					
+					
 				<%
 					}
 					}

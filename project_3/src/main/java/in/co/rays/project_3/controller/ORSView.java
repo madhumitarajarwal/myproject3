@@ -45,6 +45,13 @@ public interface ORSView {
 	public String PRESCRIPTION_LIST_VIEW = PAGE_FOLDER + "/PrescriptionsListView.jsp";
 	public String STAFF_VIEW = PAGE_FOLDER + "/StaffView.jsp";
 	public String STAFF_LIST_VIEW = PAGE_FOLDER + "/StaffListView.jsp";
+	public String CART_VIEW = PAGE_FOLDER + "/CartView.jsp";
+	public String CART_LIST_VIEW = PAGE_FOLDER + "/CartListView.jsp";
+	public String PURCHASE_VIEW = PAGE_FOLDER + "/PurchaseView.jsp";
+	public String PURCHASE_LIST_VIEW = PAGE_FOLDER + "/PurchaseListView.jsp";
+	public String ITEM_VIEW = PAGE_FOLDER + "/ItemView.jsp";
+	public String ITEM_LIST_VIEW = PAGE_FOLDER + "/ItemListView.jsp";
+	
 
 	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
 	public String Employee_CTL = APP_CONTEXT + "/ctl/EmployeeCtl";
@@ -84,4 +91,10 @@ public interface ORSView {
 	public String PRESCRIPTION_LIST_CTL = APP_CONTEXT + "/ctl/PrescriptionListCtl";
 	public String STAFF_CTL = APP_CONTEXT + "/ctl/StaffCtl";
 	public String STAFF_LIST_CTL = APP_CONTEXT + "/ctl/StaffListCtl";
+	public String CART_CTL = APP_CONTEXT + "/ctl/CartCtl";
+	public String CART_LIST_CTL = APP_CONTEXT + "/ctl/CartListCtl";
+	public String PURCHASE_CTL = APP_CONTEXT + "/ctl/PurchaseCtl";
+	public String PURCHASE_LIST_CTL = APP_CONTEXT + "/ctl/PurchaseListCtl";
+	public String ITEM_CTL = APP_CONTEXT + "/ctl/ItemCtl";
+	public String ITEM_LIST_CTL = APP_CONTEXT + "/ctl/ItemListCtl";
 }

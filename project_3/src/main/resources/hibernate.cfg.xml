@@ -23,7 +23,8 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
 
         <!-- Mapping Files -->
-        <mapping resource="in/co/rays/project_3/hbm/UserDTO.hbm.xml"/>
+     <mapping resource="in/co/rays/project_3/hbm/UserDTO.hbm.xml"/>
+        <mapping resource="in/co/rays/project_3/hbm/PurchaseDTO.hbm.xml"/>
         <mapping resource="in/co/rays/project_3/hbm/StudentDTO.hbm.xml"/>
         <mapping resource="in/co/rays/project_3/hbm/CollegeDTO.hbm.xml"/>
         <mapping resource="in/co/rays/project_3/hbm/CourseDTO.hbm.xml"/>
@@ -34,7 +35,9 @@
         <mapping resource="in/co/rays/project_3/hbm/SubjectDTO.hbm.xml"/>
         <mapping resource="in/co/rays/project_3/hbm/BankDTO.hbm.xml"/>
         <mapping resource="in/co/rays/project_3/hbm/EmployeeDTO.hbm.xml"/>
-        <mapping resource="in/co/rays/project_3/hbm/StaffDTO.hbm.xml"/>
+        <mapping resource="in/co/rays/project_3/hbm/StaffDTO.hbm.xml"/> 
+         <mapping resource="in/co/rays/project_3/hbm/CartDTO.hbm.xml"/>
+         <mapping resource="in/co/rays/project_3/hbm/ItemDTO.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

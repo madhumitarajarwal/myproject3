@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import in.co.rays.project_3.dto.StaffDTO;
+import in.co.rays.project_3.dto.PurchaseDTO;
 import in.co.rays.project_3.exception.ApplicationException;
 import in.co.rays.project_3.exception.DuplicateRecordException;
 import in.co.rays.project_3.exception.RecordNotFoundException;
@@ -21,7 +21,7 @@ import in.co.rays.project_3.util.HibDataSource;
  * @author Madhumita Rajarwal
  *
  */
-public class StaffModelHibImp implements StaffModelInt {
+public class PurchaseModelHibImp implements PurchaseModelInt {
 
 	/**
 	 * Add a User.
@@ -32,12 +32,12 @@ public class StaffModelHibImp implements StaffModelInt {
 	 * @throws RecordNotFoundException  the record not found exception
 	 * @throws ApplicationException     the application exception
 	 */
-	public long add(StaffDTO dto) throws ApplicationException, DuplicateRecordException {
+	public long add(PurchaseDTO dto) throws ApplicationException, DuplicateRecordException {
 
 		System.out.println("in addddddddddddd");
 		/* log.debug("usermodel hib start"); */
 
-		StaffDTO existDto = null;
+		PurchaseDTO existDto = null;
 		Session session = HibDataSource.getSession();
 		Transaction tx = null;
 		try {
@@ -69,7 +69,7 @@ public class StaffModelHibImp implements StaffModelInt {
 	 * @param dto the bean
 	 * @throws ApplicationException the application exception
 	 */
-	public void delete(StaffDTO dto) throws ApplicationException {
+	public void delete(PurchaseDTO dto) throws ApplicationException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		Transaction tx = null;
@@ -96,7 +96,7 @@ public class StaffModelHibImp implements StaffModelInt {
 	 * @throws DuplicateRecordException the duplicate record exception
 	 * @throws RecordNotFoundException  the record not found exception
 	 */
-	public void update(StaffDTO dto) throws ApplicationException, DuplicateRecordException {
+	public void update(PurchaseDTO dto) throws ApplicationException, DuplicateRecordException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		Transaction tx = null;
@@ -124,13 +124,13 @@ public class StaffModelHibImp implements StaffModelInt {
 	 * @throws ApplicationException the application exception
 	 */
 
-	public StaffDTO findByPK(long pk) throws ApplicationException {
+	public PurchaseDTO findByPK(long pk) throws ApplicationException {
 		// TODO Auto-generated method stub
 		Session session = null;
-		StaffDTO dto = null;
+		PurchaseDTO dto = null;
 		try {
 			session = HibDataSource.getSession();
-			dto = (StaffDTO) session.get(StaffDTO.class, pk);
+			dto = (PurchaseDTO) session.get(PurchaseDTO.class, pk);
 
 		} catch (HibernateException e) {
 			throw new ApplicationException("Exception : Exception in getting User by pk");
@@ -170,7 +170,7 @@ public class StaffModelHibImp implements StaffModelInt {
 		List list = null;
 		try {
 			session = HibDataSource.getSession();
-			Criteria criteria = session.createCriteria(StaffDTO.class);
+			Criteria criteria = session.createCriteria(PurchaseDTO.class);
 			if (pageSize > 0) {
 				pageNo = (pageNo - 1) * pageSize;
 				criteria.setFirstResult(pageNo);
@@ -195,7 +195,7 @@ public class StaffModelHibImp implements StaffModelInt {
 	 * @return the list
 	 * @throws ApplicationException the application exception
 	 */
-	public List search(StaffDTO dto) throws ApplicationException {
+	public List search(PurchaseDTO dto) throws ApplicationException {
 		// TODO Auto-generated method stub
 		return search(dto, 0, 0);
 	}
@@ -209,30 +209,31 @@ public class StaffModelHibImp implements StaffModelInt {
 	 * @return list : List of Users
 	 * @throws ApplicationException the application exception
 	 */
-	public List search(StaffDTO dto, int pageNo, int pageSize) throws ApplicationException {
+	public List search(PurchaseDTO dto, int pageNo, int pageSize) throws ApplicationException {
 		// TODO Auto-generated method stub
 
 		Session session = null;
-		ArrayList<StaffDTO> list = null;
+		ArrayList<PurchaseDTO> list = null;
 		try {
 			session = HibDataSource.getSession();
-			Criteria criteria = session.createCriteria(StaffDTO.class);
+			Criteria criteria = session.createCriteria(PurchaseDTO.class);
 			if (dto != null) {
 				if (dto.getId() != null) {
 					criteria.add(Restrictions.eq("id", dto.getId()));
 				}
-				if (dto.getDivision() > 0) {
-					criteria.add(Restrictions.eq("division", dto.getDivision()));
+				if (dto.getProduct() > 0) {
+					criteria.add(Restrictions.eq("product", dto.getProduct()));
 				}
-				if (dto.getFullName() != null && dto.getFullName().length() > 0) {
-					criteria.add(Restrictions.like("fullName", dto.getFullName() + "%"));
+				if (dto.getQuantity() > 0) {
+					criteria.add(Restrictions.eq("quantity", dto.getQuantity()));
 				}
-
-				if (dto.getPreviousEmployer() != null && dto.getPreviousEmployer().length() > 0) {
-					criteria.add(Restrictions.like("previousEmployer", dto.getPreviousEmployer() + "%"));
+				if (dto.getTotalCost() > 0) {
+					criteria.add(Restrictions.eq("totalCost", dto.getTotalCost()));
 				}
-				if (dto.getJoiningDate() != null && dto.getJoiningDate().getDate() > 0) {
-					criteria.add(Restrictions.eq("dob", dto.getJoiningDate()));
+                
+				
+				if (dto.getOrderDate() != null && dto.getOrderDate().getDate() > 0) {
+					criteria.add(Restrictions.eq("orderDate", dto.getOrderDate()));
 				}
 
 			}
@@ -242,7 +243,7 @@ public class StaffModelHibImp implements StaffModelInt {
 				criteria.setFirstResult(pageNo);
 				criteria.setMaxResults(pageSize);
 			}
-			list = (ArrayList<StaffDTO>) criteria.list();
+			list = (ArrayList<PurchaseDTO>) criteria.list();
 		} catch (HibernateException e) {
 			throw new ApplicationException("Exception in user search");
 		} finally {

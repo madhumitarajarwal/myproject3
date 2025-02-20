@@ -223,5 +223,43 @@ public final class ModelFactory {
 
 		return StaffModel;
 	}
+	
+	public CartModelInt getCartModel() {
+
+		CartModelInt cartModel = (CartModelInt) modelCache.get("cartModel");
+		if (cartModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				cartModel = new CartModelHibImp();
+			}
+			modelCache.put("cartModel", cartModel);
+		}
+
+		return cartModel;
+	}
+	public PurchaseModelInt getPurchaseModel() {
+
+		PurchaseModelInt purchaseModel = (PurchaseModelInt) modelCache.get("purchaseModel");
+		if (purchaseModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				purchaseModel = new PurchaseModelHibImp();
+			}
+			modelCache.put("purchaseModel", purchaseModel);
+		}
+
+		return purchaseModel;
+	}
+	
+	public ItemModelInt getItemModel() {
+		ItemModelInt ItemModel = (ItemModelInt) modelCache.get("ItemModel");
+		if (ItemModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				ItemModel = new ItemModelHibImp();
+			}
+			
+			modelCache.put("ItemModel", ItemModel);
+		}
+
+		return ItemModel;
+	}
 
 }
